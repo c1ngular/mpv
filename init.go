@@ -24,7 +24,7 @@ func main() {
 	if _, err := os.Stat("mpv"); err == nil {
 		println("mpv already cloned")
 	} else {
-		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/lirios/mpv.git").CombinedOutput(); err != nil {
+		if out, err := exec.Command("git", "clone", "--depth=1", "https://github.com/c1ngular/mpv.git").CombinedOutput(); err != nil {
 			println("failed to clone mpv", err.Error())
 			println(string(out))
 			os.Exit(1)
