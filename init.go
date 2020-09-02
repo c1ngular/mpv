@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -31,8 +32,11 @@ func main() {
 		println("cloned mpv")
 	}
 
-	//patch *.pro to build a static lib
-	//exec.Command("sed", "-i", "''", "-e", "s/# CONFIG/CONFIG/g", filepath.Join(pwd, "mpv", "mpv.pro")).CombinedOutput()
+	exec.Command("bash", "-c", fmt.Sprintf("echo \"TEMPLATE = lib\" >> %v", filepath.Join(pwd, "mpv", "mpv.pro"))).CombinedOutput()
+	exec.Command("bash", "-c", fmt.Sprintf("echo \"CONFIG += staticlib\" >> %v", filepath.Join(pwd, "mpv", "mpv.pro"))).CombinedOutput()
+
+	exec.Command("bash", "-c", fmt.Sprintf("head -n -17 %[1]v > %[2]v && mv %[2]v %[1]v", filepath.Join(pwd, "mpv", "mpv.cpp"), filepath.Join(pwd, "mpv-examples", "mpv", "copy_mpv.cpp"))).CombinedOutput()
+	exec.Command("bash", "-c", fmt.Sprintf("echo 'extern \"C\" void initMpv() { std::setlocale(LC_NUMERIC, \"C\"); qmlRegisterType<MpvObject>(\"mpvtest\", 1, 0, \"MpvObject\");	}' >> %[1]v", filepath.Join(pwd, "mpv", "mpv.cpp"))).CombinedOutput()
 
 	for _, target := range []string{runtime.GOOS, "android", "android_emulator", "ios"} {
 		os.MkdirAll(filepath.Join(pwd, "mpv", target), 0755)
