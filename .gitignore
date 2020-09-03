@@ -2,4 +2,6 @@ darwin
 Android
 .DS_Store
 demo
+moc*
+Makefile
 
