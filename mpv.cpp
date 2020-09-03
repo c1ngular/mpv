@@ -6,9 +6,12 @@
 #include <QObject>
 #include <QtGlobal>
 #include <QOpenGLContext>
+#include <QGuiApplication>
+
 #include <QtGui/QOpenGLFramebufferObject>
 
-
+#include <QtQuick/QQuickWindow>
+#include <QtQuick/QQuickView>
 
 namespace
 {
@@ -154,21 +157,7 @@ QQuickFramebufferObject::Renderer *MpvObject::createRenderer() const
     return new MpvRenderer(const_cast<MpvObject *>(this));
 }
 
-/*int main(int argc, char **argv)
-{
-    QGuiApplication app(argc, argv);
-
-    // Qt sets the locale in the QGuiApplication constructor, but libmpv
-    // requires the LC_NUMERIC category to be set to "C", so change it back.
-    std::setlocale(LC_NUMERIC, "C");
-
-    qmlRegisterType<MpvObject>("mpvtest", 1, 0, "MpvObject");
-
-    QQuickView view;
-    view.setResizeMode(QQuickView::SizeRootObjectToView);
-    view.setSource(QUrl("qrc:///mpvtest/main.qml"));
-    view.show();
-
-    return app.exec();
-}*/
-extern "C" void initMpv() { std::setlocale(LC_NUMERIC, "C"); qmlRegisterType<MpvObject>("mpvtest", 1, 0, "MpvObject");	}
+extern "C" void initMpv() { 
+    std::setlocale(LC_NUMERIC, "C"); 
+    qmlRegisterType<MpvObject>("mpv", 1, 0, "MpvObject");	
+}

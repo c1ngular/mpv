@@ -8,5 +8,3 @@ CONFIG += link_pkgconfig debug
 PKGCONFIG += mpv
 TEMPLATE = lib
 CONFIG += staticlib
-TEMPLATE = lib
-CONFIG += staticlib

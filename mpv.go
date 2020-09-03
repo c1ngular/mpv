@@ -2,7 +2,6 @@ package mpv
 
 /*
 #cgo pkg-config: mpv
-#cgo linux,amd64 LDFLAGS: -L ${SRCDIR}/mpv-examples/libmpv/qml -lmpvtest
 void initMpv();
 */
 import "C"
