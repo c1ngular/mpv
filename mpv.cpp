@@ -159,5 +159,5 @@ QQuickFramebufferObject::Renderer *MpvObject::createRenderer() const
 
 extern "C" void initMpv() { 
     std::setlocale(LC_NUMERIC, "C"); 
-    qmlRegisterType<MpvObject>("mpv", 1, 0, "MpvObject");	
+    qmlRegisterType<MpvObject>("mpv", 1, 0, "MpvPlayer");	
 }
