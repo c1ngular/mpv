@@ -150,6 +150,11 @@ void MpvObject::setProperty(const QString& name, const QVariant& value)
     mpv::qt::set_property_variant(mpv, name, value);
 }
 
+QVariant MpvObject::getProperty(const QString &name) const
+{
+    return mpv::qt::get_property_variant(mpv, name);
+}
+
 QQuickFramebufferObject::Renderer *MpvObject::createRenderer() const
 {
     window()->setPersistentOpenGLContext(true);

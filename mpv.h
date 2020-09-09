@@ -24,6 +24,7 @@ public:
     MpvObject(QQuickItem * parent = 0);
     virtual ~MpvObject();
     virtual Renderer *createRenderer() const;
+    Q_INVOKABLE QVariant getProperty(const QString& name) const;
 
 public slots:
     void command(const QVariant& params);
